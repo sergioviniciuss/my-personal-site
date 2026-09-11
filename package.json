@@ -1,0 +1,22 @@
+{
+  "name": "sergio-personal-site",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^16.3.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@next/swc-darwin-arm64": "^16.3.4",
+    "@types/node": "20.17.30",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "typescript": "5.8.2"
+  }
+}

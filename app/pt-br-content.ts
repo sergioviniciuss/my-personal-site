@@ -1,0 +1,82 @@
+export const portugueseProfessionalWork: [string, string, string, string, string[], string, string][] = [
+  ['01', 'Render Multimídia', 'Redesign de todas as páginas, performance e SEO', 'Reconstruí as páginas da empresa para um redesign, com foco em qualidade de frontend, performance web, SEO e uma funcionalidade de pesquisa.', ['Frontend', 'Performance', 'Web Performance', 'cross-browser compatibility', 'SEO'], '/logos/render.svg', 'E-commerce'],
+  ['02', 'Fruition Sciences', 'Ferramentas para otimizar a produção de vinho', 'Desenvolvi uma calculadora de irrigação, substituí templates CSV por templates Excel adequados para melhorar a experiência dos clientes e implementei controle de acesso baseado em funções.', ['Fullstack', 'PHP', 'PHPExcel', 'JavaScript', 'RBAC'], '/logos/fruition.png', 'Ferramenta de decisão online'],
+  ['03', 'Neogrid', 'ezMarket', 'Fiz parte do time de manutenção e evolução do ezMarket, ajudando a reduzir um backlog de mais de 2.000 bugs para cerca de 30 em dois anos e introduzindo práticas de engenharia mais fortes em um dos times Agile mais maduros em que trabalhei. Depois, desenvolvi o fluxo de aprovação de awards da plataforma de negociações usada por grandes redes de supermercados europeias.', ['Fullstack', 'Java', 'Hibernate', 'Oracle', 'Liquibase', 'Aspose', 'Maven', 'Selenium'], '/logos/neogrid.png', 'Software de e-auction e negociações'],
+  ['04', 'Infracommerce', 'Interfaces para grandes marcas', 'Desenvolvi experiências de frontend para plataformas de e-commerce B2C, B2B e B2E, combinando melhorias de SEO com entregas escaláveis em um time de mais de 15 desenvolvedores. Trabalhei com marcas como Carrefour, Ubisoft, Ray-Ban, JBL, Sunglass Hut, Oakley, Unilever e Vilanova. Também contribuí para a adoção de Scrum, melhorias de processo e coordenação do time de manutenção.', ['JavaScript', 'jQuery', 'Node.js', 'SASS', 'Grunt', 'Gulp', 'SEO', 'Optimizations'], '/logos/infracommerce.svg', 'E-commerce'],
+  ['05', 'Raisin DS', 'Aquisição online e jornada web', 'Melhorei o site público e a jornada de cadastro, implementei i18n do zero, migrei a tabela de ofertas de Angular para React e mantive uma aplicação Vue.js. Também criei uma CLI interna para apoiar os workflows do Contentstack. Rodamos testes A/B para otimizar a conversão de cadastro, incluindo um experimento bem-sucedido que aumentou esse indicador em 40%.', ['React', 'Next.js', 'TypeScript', 'Node.js', 'PHP', 'WordPress', 'Contentstack', 'Microfrontends', 'Lerna', 'Monorepo', 'i18n', 'Angular', 'Vue.js'], '/logos/raisin.svg', 'Fintech'],
+  ['06', 'Nord Security', 'Painel de controle do NordVPN', 'Como cliente da Nord, entrei para o time responsável pelo User Control Panel do NordVPN e de outros produtos. Antes de assumir a liderança, implementei uma camada de Cloudflare Workers, desenvolvi experiências críticas como a página de planos e fluxos automatizados de reembolso, e ajudei a melhorar formas de trabalho, processos do time e o fluxo de releases. Hoje, meu time é responsável pelos KPIs de pagamentos recorrentes, assinaturas e reembolsos.', ['Leadership', 'React', 'TypeScript', 'SPA', 'Headless CMS', 'Agentic', 'Webpack', 'Storyblok', 'Nexos', 'AI enablement'], '/logos/nord.svg', 'Cibersegurança']
+];
+
+export const portugueseSideProjects = [
+  { icon: '✈', color: 'blue', title: 'Travdraft', description: 'Compare ideias de viagem, visualize rotas e escolha a viagem que realmente vale a pena.', tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'Neon', 'NextAuth', 'OpenAI', 'PWA'], logo: '/logos/travdraft.png', url: 'https://travdraft.com', banner: '/logos/travdraft-banner.png', featured: true },
+  { icon: '!', color: 'red', title: 'Emergency Playbook', description: 'Em desenvolvimento', tags: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Zod', 'Vitest'], logo: '/logos/emergency-playbook.png', comingSoon: true },
+  { icon: '🏫', color: 'blue', title: 'Berlin School Guide', description: 'Um guia prático para famílias que querem entender o sistema escolar alemão e comparar escolas primárias em Berlim.', tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MDX', 'Zod', 'SSG'], logo: '', url: 'https://berlin-school-guide.vercel.app/' },
+  { icon: '◌', color: 'green', title: 'Better Habits', description: 'Um app de desafios de hábitos para criar sequências, manter a responsabilidade com amigos e competir em rankings.', tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'next-intl'], logo: '/logos/better-habits.png', url: 'https://better-habits.vercel.app/' },
+  { icon: '🗓', color: 'amber', title: 'Family Schedule', description: 'Criado para dividir de forma justa as férias entre a casa dos meus pais e dos meus sogros no Brasil. Registre cada noite, ajuste os planos quando necessário e mantenha o equilíbrio visível.', tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'NextAuth', 'SQLite'], logo: '' }
+];
+
+export const portugueseCareer: [string, string, string, string, string][] = [
+  ['2010 — 2011', 'Render Multimídia', 'Educação online e treinamento profissionalizante.', 'Brasil', '🇧🇷'],
+  ['2012', 'Fruition Sciences', 'Software para irrigação de precisão e gestão de vinhedos.', 'França', '🇫🇷'],
+  ['2012 — 2015', 'Neogrid', 'Tecnologia para cadeia de suprimentos e comércio B2B.', 'Brasil', '🇧🇷'],
+  ['2015 — 2018', 'Infracommerce', 'Tecnologia para e-commerce empresarial e comércio digital.', 'Brasil', '🇧🇷'],
+  ['2018 — 2022', 'Raisin DS', 'Produtos digitais de poupança e investimentos.', 'Alemanha', '🇩🇪'],
+  ['2022 — Presente', 'Nord Security', 'Produtos de cibersegurança e privacidade.', 'Alemanha', '🇩🇪']
+];
+
+export const portugueseUi = {
+  home: 'Início',
+  career: 'Carreira',
+  work: 'Experiência',
+  projects: 'Projetos',
+  contact: 'Contato',
+  letsTalk: 'Vamos conversar',
+  engineerBuilderBerlin: 'Engenheiro · Liderança · Berlim',
+  heroTitle: 'Transformando problemas complexos em',
+  heroTitleEmphasis: 'coisas úteis.',
+  heroIntro: 'Sou Sérgio Vinícius, engenheiro de software com visão de produto. Trago uma forte experiência em frontend, uma visão ampla da stack e foco em performance, manutenção e experiência do usuário.',
+  seeMyWork: 'Ver meu trabalho',
+  aboutMe: 'Sobre mim',
+  languages: 'Idiomas',
+  fluentInAllThree: 'Fluente nos três',
+  education: 'Formação',
+  bachelor: 'Bacharelado em Ciência da Computação · UDESC',
+  master: 'Estudos de Master 1 · École nationale supérieure des mines de Saint-Étienne',
+  focusAreas: 'Áreas de foco',
+  productEngineering: 'Engenharia de produto',
+  performanceScale: 'Performance e escala',
+  peopleLeadership: 'Pessoas e liderança',
+  ideasSolutions: 'Ideias em soluções reais',
+  portraitAlt: 'Retrato de Sérgio Vinícius',
+  build: 'Construir',
+  learn: 'aprender',
+  improve: 'melhorar',
+  repeat: 'repetir',
+  aboutEyebrow: 'Sobre mim',
+  aboutHeading: 'Construo produtos digitais onde engenharia, visão de produto e liderança se encontram.',
+  aboutParagraph1: 'Sou engenheiro de software com visão de produto, com mais de 15 anos de experiência transformando problemas complexos em produtos digitais úteis. Trago uma forte experiência em frontend, uma visão ampla da stack e foco em performance, manutenção e experiência do usuário.',
+  aboutParagraph2: 'Ao longo da minha carreira no Brasil, na França e na Alemanha, trabalhei com e-commerce, fintech, cibersegurança e plataformas de tomada de decisão, contribuindo em diferentes camadas e assumindo cada vez mais responsabilidades de liderança técnica e de pessoas.',
+  aboutParagraph3: 'Hoje, tenho especial interesse em formar times fortes, melhorar a forma como trabalhamos e usar IA com responsabilidade para automatizar rotinas, gerar insights e ajudar pessoas a entregar software melhor.',
+  aboutPersonal: 'Longe do teclado, sou marido, pai e um entusiasta de vôlei e ciclismo.',
+  careerEyebrow: 'Trajetória profissional',
+  careerHeading: 'Um caminho construído com impacto.',
+  careerNote: 'Do Brasil a Alemanha, trabalhei com produtos, times e tecnologias diferentes — sempre curioso, sempre agregando valor.',
+  scrollTimeline: 'Deslize para o lado para explorar',
+  scrollTimelineLeft: 'Deslizar linha do tempo para a esquerda',
+  scrollTimelineRight: 'Deslizar linha do tempo para a direita',
+  selectedExperience: 'Experiência selecionada',
+  professionalWork: 'Experiência profissional',
+  professionalNote: 'Alguns destaques dos produtos e times que ajudei a levar adiante.',
+  personalExperiments: 'Experimentos pessoais',
+  sideProjects: 'Projetos pessoais',
+  sideProjectsNote: 'Pequenas ferramentas, problemas reais. Feitos para aprender, explorar e tornar a vida um pouco mais fácil.',
+  featuredProject: 'Projeto em destaque',
+  openProject: 'Abrir',
+  buildUsefulThings: 'Construa coisas úteis.',
+  keepLearning: 'Continue aprendendo.',
+  engineerBuilderFooter: 'Engenheiro · Builder · Berlim',
+  flag: 'bandeira',
+  languageCode: 'pt-BR',
+  title: 'Sérgio Vinícius | Engenheiro · Builder · Berlim',
+  description: 'Portfólio pessoal de Sérgio Vinícius, engenheiro de software com visão de produto baseado em Berlim.'
+};
