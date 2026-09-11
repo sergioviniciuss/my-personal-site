@@ -30,7 +30,7 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /sergio-personal-site
+          NEXT_PUBLIC_BASE_PATH: /my-personal-site
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
