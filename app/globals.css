@@ -56,6 +56,8 @@ h2 { margin: 0; font-size: clamp(32px, 4vw, 53px); line-height: 1.02; letter-spa
 .timeline-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
 .control-group { display: flex; gap: 8px; }
 .icon-button { width: 36px; height: 36px; cursor: pointer; color: var(--text); border: 1px solid var(--line); background: transparent; }
+.icon-button:disabled { cursor: default; color: var(--muted); opacity: .35; }
+.icon-button:disabled:hover { color: var(--muted); background: transparent; border-color: var(--line); }
 .icon-button.active, .icon-button:hover { color: #10151a; background: var(--amber); border-color: var(--amber); }
 .timeline-viewport { overflow-x: auto; scrollbar-color: var(--amber) var(--surface); scrollbar-width: thin; outline: none; }
 .timeline-track { display: grid; grid-template-columns: repeat(6, minmax(185px, 1fr)); gap: 22px; min-width: 1120px; position: relative; padding: 58px 9px 12px; }

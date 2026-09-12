@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { portugueseCareer, portugueseProfessionalWork, portugueseSideProjects } from './pt-br-content';
 
 export type Locale = 'en' | 'pt-br';
@@ -48,6 +48,7 @@ const career: [string, string, string, string, string][] = [
 
 export default function Home({ locale = 'en' }: { locale?: Locale }) {
   const timeline = useRef<HTMLDivElement>(null);
+  const [timelineBounds, setTimelineBounds] = useState({ canScrollLeft: false, canScrollRight: false });
   const isPortuguese = locale === 'pt-br';
   const currentProfessionalWork = isPortuguese ? portugueseProfessionalWork : professionalWork;
   const currentSideProjects = isPortuguese ? portugueseSideProjects : sideProjects;
@@ -64,7 +65,39 @@ export default function Home({ locale = 'en' }: { locale?: Locale }) {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTimeline = (direction: number) => timeline.current?.scrollBy({ left: direction * 360, behavior: 'smooth' });
+  useEffect(() => {
+    const viewport = timeline.current;
+    if (!viewport) return;
+
+    const updateTimelineBounds = () => {
+      const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      setTimelineBounds({
+        canScrollLeft: viewport.scrollLeft > 1,
+        canScrollRight: viewport.scrollLeft < maxScrollLeft - 1
+      });
+    };
+
+    updateTimelineBounds();
+    viewport.addEventListener('scroll', updateTimelineBounds, { passive: true });
+    window.addEventListener('resize', updateTimelineBounds);
+    const resizeObserver = new ResizeObserver(updateTimelineBounds);
+    resizeObserver.observe(viewport);
+    if (viewport.firstElementChild) resizeObserver.observe(viewport.firstElementChild);
+
+    return () => {
+      viewport.removeEventListener('scroll', updateTimelineBounds);
+      window.removeEventListener('resize', updateTimelineBounds);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  const scrollTimeline = (direction: number) => {
+    const viewport = timeline.current;
+    if (!viewport) return;
+    const maxScrollLeft = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const nextScrollLeft = Math.min(maxScrollLeft, Math.max(0, viewport.scrollLeft + direction * 360));
+    viewport.scrollTo({ left: nextScrollLeft, behavior: 'smooth' });
+  };
 
   return <>
     <header className="site-header shell">
@@ -81,7 +114,7 @@ export default function Home({ locale = 'en' }: { locale?: Locale }) {
 
       <section id="about" className="about-section section shell"><div className="about-copy"><div className="about-lead"><p className="eyebrow">{text('About me', 'Sobre mim')}</p><h2>{text('I build digital products where engineering, product thinking and leadership meet.', 'Construo produtos digitais onde engenharia, visão de produto e liderança se encontram.')}</h2></div><div className="about-details"><p>{text("I'm a software engineer and product-minded builder with 15+ years of experience turning complex problems into useful digital products. I bring deep frontend expertise, a broad understanding of the stack and a strong focus on performance, maintainability and user experience.", 'Sou engenheiro de software com visão de produto, com mais de 15 anos de experiência transformando problemas complexos em produtos digitais úteis. Trago uma forte experiência em frontend, uma visão ampla da stack e foco em performance, manutenção e experiência do usuário.')}</p><p>{text("Across Brazil, France and Germany, I've worked in e-commerce, fintech, cybersecurity and decision-making platforms, contributing across the stack while increasingly taking on technical and people leadership.", 'Ao longo da minha carreira no Brasil, na França e na Alemanha, trabalhei com e-commerce, fintech, cibersegurança e plataformas de tomada de decisão, contribuindo em diferentes camadas e assumindo cada vez mais responsabilidades de liderança técnica e de pessoas.')}</p><p>{text("Today, I'm especially interested in building strong teams, improving how we work, and using AI thoughtfully to automate routines, surface insights and help people deliver better software.", 'Hoje, tenho especial interesse em formar times fortes, melhorar a forma como trabalhamos e usar IA com responsabilidade para automatizar rotinas, gerar insights e ajudar pessoas a entregar software melhor.')}</p><p className="about-personal">{text("Away from the keyboard, I'm a husband, a father, and an enthusiastic volleyball player and cyclist.", 'Longe do teclado, sou marido, pai e um entusiasta de vôlei e ciclismo.')}</p></div></div></section>
 
-      <section id="career" className="career-section section shell"><div className="section-heading career-heading"><div><p className="eyebrow">{text('Career journey', 'Trajetória profissional')}</p><h2>{text('A path built on impact.', 'Um caminho construído com impacto.')}</h2></div><p className="section-note">{text("From Brazil to Berlin, I've worked across products, teams and technologies — always curious, always building.", 'Do Brasil a Berlim, trabalhei com produtos, times e tecnologias diferentes — sempre curioso, sempre agregando valor.')}</p></div><div className="timeline-controls"><span>{text('Scroll sideways to explore', 'Deslize para o lado para explorar')}</span><div className="control-group"><button className="icon-button" onClick={() => scrollTimeline(-1)} aria-label={text('Scroll career timeline left', 'Deslizar linha do tempo para a esquerda')}>←</button><button className="icon-button active" onClick={() => scrollTimeline(1)} aria-label={text('Scroll career timeline right', 'Deslizar linha do tempo para a direita')}>→</button></div></div><div className="timeline-viewport" ref={timeline} tabIndex={0} aria-label={text('Scrollable career timeline', 'Linha do tempo de carreira rolável')}><div className="timeline-track"><div className="timeline-line" aria-hidden="true"></div>{currentCareer.map(([date, title, description, country, flag], index) => <article className={`timeline-item ${index === currentCareer.length - 1 ? 'is-current' : ''}`} key={title}><span className="timeline-flag" role="img" aria-label={`${country} ${text('flag', 'bandeira')}`}>{flag}</span><span className="timeline-dot"></span><p className="timeline-date">{date}</p><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
+      <section id="career" className="career-section section shell"><div className="section-heading career-heading"><div><p className="eyebrow">{text('Career journey', 'Trajetória profissional')}</p><h2>{text('A path built on impact.', 'Um caminho construído com impacto.')}</h2></div><p className="section-note">{text("From Brazil to Berlin, I've worked across products, teams and technologies — always curious, always building.", 'Do Brasil a Berlim, trabalhei com produtos, times e tecnologias diferentes — sempre curioso, sempre agregando valor.')}</p></div><div className="timeline-controls"><span>{text('Scroll sideways to explore', 'Deslize para o lado para explorar')}</span><div className="control-group"><button className="icon-button" onClick={() => scrollTimeline(-1)} disabled={!timelineBounds.canScrollLeft} aria-label={text('Scroll career timeline left', 'Deslizar linha do tempo para a esquerda')}>←</button><button className="icon-button active" onClick={() => scrollTimeline(1)} disabled={!timelineBounds.canScrollRight} aria-label={text('Scroll career timeline right', 'Deslizar linha do tempo para a direita')}>→</button></div></div><div className="timeline-viewport" ref={timeline} tabIndex={0} aria-label={text('Scrollable career timeline', 'Linha do tempo de carreira rolável')}><div className="timeline-track"><div className="timeline-line" aria-hidden="true"></div>{currentCareer.map(([date, title, description, country, flag], index) => <article className={`timeline-item ${index === currentCareer.length - 1 ? 'is-current' : ''}`} key={title}><span className="timeline-flag" role="img" aria-label={`${country} ${text('flag', 'bandeira')}`}>{flag}</span><span className="timeline-dot"></span><p className="timeline-date">{date}</p><h3>{title}</h3><p>{description}</p></article>)}</div></div></section>
 
       <section id="work" className="section shell"><div className="section-heading"><div><p className="eyebrow">{text('Selected experience', 'Experiência selecionada')}</p><h2>{text('Professional work', 'Experiência profissional')}</h2></div><p className="section-note">{text("A few highlights from the products and teams I've helped move forward.", 'Alguns destaques dos produtos e times que ajudei a levar adiante.')}</p></div><div className="project-grid professional-grid">{currentProfessionalWork.map(([, company, title, description, tags, logo, productType], indexPosition) => { const [, , , country, flag] = currentCareer[indexPosition]; return <article className="project-card" data-reveal key={company}><div className="company-mark card-logo"><img src={assetPath(logo)} alt={`${company} ${text('logo', 'logo')}`} loading="lazy" decoding="async" /></div><div><div className="company-line"><p className="card-company">{company}</p><span className="company-flag" role="img" aria-label={`${country} ${text('flag', 'bandeira')}`}>{flag}</span></div><p className="product-type">{productType}</p><h3>{title}</h3><p>{description}</p><div className="tags">{(tags as string[]).map((tag) => <span key={tag}>{tag}</span>)}</div></div></article> })}</div></section>
 
