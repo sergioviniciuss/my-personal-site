@@ -4,6 +4,7 @@ declare global {
   interface Window { dataLayer?: unknown[]; gtag?: (...args: unknown[]) => void }
 }
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CONSENT_KEY = 'analytics-consent';
 const OPT_OUT_KEY = 'analytics-opt-out';
 export const CONSENT_CHANGE_EVENT = 'analytics-consent-change';
@@ -19,12 +20,13 @@ export const getConsent = (): Consent | null => {
   return value === 'granted' || value === 'denied' ? value : null;
 };
 
+// gtag.js stays in memory once loaded, so both choices must be pushed to it explicitly.
+// The ga-disable flag stops every hit, including the cookieless pings Consent Mode sends while denied.
 export function setConsent(consent: Consent) {
   write(CONSENT_KEY, consent);
-  if (consent === 'denied') {
-    window.gtag?.('consent', 'update', { analytics_storage: 'denied' });
-    clearAnalyticsCookies();
-  }
+  if (GA_ID) (window as unknown as Record<string, unknown>)[`ga-disable-${GA_ID}`] = consent !== 'granted';
+  window.gtag?.('consent', 'update', { analytics_storage: consent });
+  if (consent === 'denied') clearAnalyticsCookies();
   window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
 }
 
@@ -37,6 +39,7 @@ export function isOptedOut() {
 }
 
 export function track(event: string, params?: Record<string, string | undefined>) {
+  if (getConsent() !== 'granted' || isOptedOut()) return;
   window.gtag?.('event', event, params);
 }
 
